@@ -18,6 +18,11 @@ namespace Warehouse
     public partial class Form1 : Form
     {
         Random Rnd = new Random();
+        /// <summary>
+        /// Стартовая форма.
+        /// </summary>
+        public StartForm MainForm;
+        public string WarehousePath { get; private set; }
         public Form1()
         {
             InitializeComponent();
@@ -294,6 +299,7 @@ namespace Warehouse
                         formatter.Serialize(fs, sClass);
 
                     }
+                    WarehousePath = file;
                 }
 
             }
@@ -324,6 +330,7 @@ namespace Warehouse
 
                     }
                     warehouse = sClass.ReturnWarehouse();
+                    WarehousePath = file;
                 }
                 else warehouse = null;
 
@@ -374,7 +381,7 @@ namespace Warehouse
         /// Активирует кнопки при открытии или создании склада.
         /// </summary>
         /// <param name="ind">Индикатор.</param>
-        private void ActivateWarehouseButtons(bool ind = true)
+        protected void ActivateWarehouseButtons(bool ind = true)
         {
 
             toolStripMainMenuItemCategory.Enabled = ind;
@@ -559,7 +566,7 @@ namespace Warehouse
         /// <summary>
         /// Нажание на кнопку помощи в главном меню.
         /// </summary>
-        private void ToolHelpButton_Click(object sender, EventArgs e)
+        public virtual void ToolHelpButton_Click(object sender, EventArgs e)
         {
             MessageBox.Show("1. Для выделения нескольких товаров зажмите CTRL."
                 + Environment.NewLine + "2. При двойном клики на узел дерева открывается контекстное меню"
@@ -649,5 +656,22 @@ namespace Warehouse
         {
             return Rnd.Next(10, 100) + "-" + Rnd.Next(1000, 10000) + "-" + Rnd.Next(10, 100); 
         }
+
+        /// <summary>
+        /// Выход из аккаунта.
+        /// </summary>
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        /// <summary>
+        /// Закрытие формы.
+        /// </summary>
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MainForm.Visible = true;
+        }
+        
     }
 }

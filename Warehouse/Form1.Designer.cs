@@ -46,6 +46,7 @@ namespace Warehouse
             this.toolStripMenuItemRandom = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemRandomCategories = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemRandomGoods = new System.Windows.Forms.ToolStripMenuItem();
+            this.Exit = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolHelpButton = new System.Windows.Forms.ToolStripMenuItem();
             this.DataGridView1 = new System.Windows.Forms.DataGridView();
             this.ContextMenuStripTreeView = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -88,6 +89,7 @@ namespace Warehouse
             this.toolStripMenuItemGood,
             this.toolStripMenuItemReport,
             this.toolStripMenuItemRandom,
+            this.Exit,
             this.ToolHelpButton});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -210,6 +212,13 @@ namespace Warehouse
             this.toolStripMenuItemRandomGoods.Size = new System.Drawing.Size(281, 26);
             this.toolStripMenuItemRandomGoods.Text = "Сгенерировать товары";
             this.toolStripMenuItemRandomGoods.Click += new System.EventHandler(this.toolStripMenuItemRandomGoods_Click);
+            // 
+            // Exit
+            // 
+            this.Exit.Name = "Exit";
+            this.Exit.Size = new System.Drawing.Size(67, 24);
+            this.Exit.Text = "Выйти";
+            this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
             // ToolHelpButton
             // 
@@ -339,6 +348,7 @@ namespace Warehouse
             this.MinimumSize = new System.Drawing.Size(600, 300);
             this.Name = "Form1";
             this.Text = "Склад";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView1)).EndInit();
@@ -350,35 +360,35 @@ namespace Warehouse
         }
 
         #endregion
-
-        private System.Windows.Forms.TreeView TreeView1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.DataGridView DataGridView1;
-        private System.Windows.Forms.ContextMenuStrip ContextMenuStripTreeView;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAddCategory;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAddGood;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDeleteCategory;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMainMenuItemCategory;
         private System.Windows.Forms.ToolStripMenuItem toolStripMainMenuItemAddCategory;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMainMenuItemDeleteCategory;
         private System.Windows.Forms.ToolStripMenuItem toolStripMainMenuItemAddGood;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemGood;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDeleteGood;
         private System.Windows.Forms.SaveFileDialog SaveFileDialog1;
         private System.Windows.Forms.OpenFileDialog OpenFileDialog1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemWarehouse;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOpenWarehouse;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSaveWarehouse;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCreateWarehouse;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemReport;
         private System.Windows.Forms.SaveFileDialog SaveReportFileDialog2;
-        private System.Windows.Forms.ToolStripMenuItem ToolHelpButton;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRandom;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRandomCategories;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRandomGoods;
-        private System.Windows.Forms.DataGridView DataGridView2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        public System.Windows.Forms.MenuStrip menuStrip1;
+        public System.Windows.Forms.DataGridView DataGridView1;
+        public System.Windows.Forms.ContextMenuStrip ContextMenuStripTreeView;
+        public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemWarehouse;
+        public System.Windows.Forms.DataGridView DataGridView2;
+        public System.Windows.Forms.ToolStripMenuItem Exit;
+        public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAddCategory;
+        public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAddGood;
+        public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDeleteCategory;
+        public System.Windows.Forms.ToolStripMenuItem toolStripMainMenuItemCategory;
+        public System.Windows.Forms.ToolStripMenuItem toolStripMainMenuItemDeleteCategory;
+        public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemGood;
+        public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDeleteGood;
+        public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOpenWarehouse;
+        public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSaveWarehouse;
+        public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCreateWarehouse;
+        public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemReport;
+        public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRandom;
+        public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRandomCategories;
+        public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRandomGoods;
+        public System.Windows.Forms.ToolStripMenuItem ToolHelpButton;
+        public System.Windows.Forms.TreeView TreeView1;
     }
 }
 
