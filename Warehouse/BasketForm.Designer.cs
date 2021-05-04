@@ -58,6 +58,7 @@ namespace Warehouse
             this.CreateOrder.TabIndex = 1;
             this.CreateOrder.Text = "Оформить заказ";
             this.CreateOrder.UseVisualStyleBackColor = true;
+            this.CreateOrder.Click += new System.EventHandler(this.CreateOrder_Click);
             // 
             // BasketForm
             // 
@@ -68,6 +69,7 @@ namespace Warehouse
             this.Controls.Add(this.DataGridView1);
             this.Name = "BasketForm";
             this.Text = "Корзина";
+            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView1)).EndInit();
             this.ResumeLayout(false);
 

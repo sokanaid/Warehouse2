@@ -267,7 +267,7 @@ namespace Warehouse
         /// Список товаров всех подкатегорий
         /// </summary>
         /// <returns></returns>
-        public List<Good> AllCatigoriesGoods(Warehouse category)
+        public static List<Good> AllCatigoriesGoods(Warehouse category)
         {
             List<Good> ans = new List<Good>();
 
@@ -681,7 +681,7 @@ namespace Warehouse
             try
             {
                 List<Good> goods = AllCatigoriesGoods((Warehouse)TreeView1.Nodes[0]).Where(x => x.ChousenCount > 0).ToList();
-                BasketForm form = new BasketForm(goods, (Warehouse)TreeView1.Nodes[0]);
+                BasketForm form = new BasketForm(goods, (Warehouse)TreeView1.Nodes[0],MainForm.CurrentClient.Email);
                 form.Show();
             }
             catch

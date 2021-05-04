@@ -23,6 +23,10 @@ namespace Warehouse
         /// Путь к текущему складу.
         /// </summary>
         public string WarehousePath = Path.Combine("warehouses","1.bin");
+        /// <summary>
+        /// Текущий клиент.
+        /// </summary>
+        public Client CurrentClient;
         public StartForm()
         {
             InitializeComponent();
@@ -73,6 +77,7 @@ namespace Warehouse
         {
             try
             {
+                CurrentClient = currentSeller;
                 this.Visible = false;
                 var form = new SellerForm(this.WarehousePath);
                 form.MainForm = this;
@@ -93,6 +98,7 @@ namespace Warehouse
         {
             try
             {
+                CurrentClient = currentClient;
                 this.Visible = false;
                 var form = new CustomerForm(WarehousePath);
                 form.MainForm = this;
