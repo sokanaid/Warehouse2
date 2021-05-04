@@ -59,6 +59,8 @@ namespace Warehouse
             this.DataGridView2 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.toolStripMenuItemOrder = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemBasket = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView1)).BeginInit();
             this.ContextMenuStripTreeView.SuspendLayout();
@@ -89,6 +91,8 @@ namespace Warehouse
             this.toolStripMenuItemGood,
             this.toolStripMenuItemReport,
             this.toolStripMenuItemRandom,
+            this.toolStripMenuItemOrder,
+            this.toolStripMenuItemBasket,
             this.Exit,
             this.ToolHelpButton});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -331,6 +335,19 @@ namespace Warehouse
             this.label2.TabIndex = 5;
             this.label2.Text = "Товары категории:";
             // 
+            // toolStripMenuItemOrder
+            // 
+            this.toolStripMenuItemOrder.Name = "toolStripMenuItemOrder";
+            this.toolStripMenuItemOrder.Size = new System.Drawing.Size(72, 24);
+            this.toolStripMenuItemOrder.Text = "Заказы";
+            // 
+            // toolStripMenuItemBasket
+            // 
+            this.toolStripMenuItemBasket.Name = "toolStripMenuItemBasket";
+            this.toolStripMenuItemBasket.Size = new System.Drawing.Size(83, 24);
+            this.toolStripMenuItemBasket.Text = "Корзина";
+            this.toolStripMenuItemBasket.Click += new System.EventHandler(this.ToolStripMenuItemBasket_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -361,7 +378,7 @@ namespace Warehouse
 
         #endregion
         private System.Windows.Forms.ToolStripMenuItem toolStripMainMenuItemAddCategory;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMainMenuItemAddGood;
+        protected System.Windows.Forms.ToolStripMenuItem toolStripMainMenuItemAddGood;
         private System.Windows.Forms.SaveFileDialog SaveFileDialog1;
         private System.Windows.Forms.OpenFileDialog OpenFileDialog1;
         private System.Windows.Forms.SaveFileDialog SaveReportFileDialog2;
@@ -389,6 +406,8 @@ namespace Warehouse
         public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRandomGoods;
         public System.Windows.Forms.ToolStripMenuItem ToolHelpButton;
         public System.Windows.Forms.TreeView TreeView1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOrder;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemBasket;
     }
 }
 

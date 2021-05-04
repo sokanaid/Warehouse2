@@ -221,7 +221,7 @@ namespace Warehouse
         /// <summary>
         /// Отображение списков товаров при нажатии на категорию.
         /// </summary>
-        private void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        protected virtual void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (!IsWareHouseOpen()) return;
             try
@@ -267,7 +267,7 @@ namespace Warehouse
         /// Список товаров всех подкатегорий
         /// </summary>
         /// <returns></returns>
-        private List<Good> AllCatigoriesGoods(Warehouse category)
+        public List<Good> AllCatigoriesGoods(Warehouse category)
         {
             List<Good> ans = new List<Good>();
 
@@ -368,7 +368,7 @@ namespace Warehouse
                 MessageBox.Show("Не удалось удалить товар.");
             }
         }
-        private bool IsWareHouseOpen()
+        protected bool IsWareHouseOpen()
         {
             if (TreeView1.Nodes.Count == 0)
             {
@@ -664,14 +664,30 @@ namespace Warehouse
         {
             Close();
         }
+
         /// <summary>
         /// Закрытие формы.
         /// </summary>
-
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             MainForm.Visible = true;
         }
-        
+
+        /// <summary>
+        /// Переход в корзину.
+        /// </summary>
+        private void ToolStripMenuItemBasket_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Good> goods = AllCatigoriesGoods((Warehouse)TreeView1.Nodes[0]).Where(x => x.ChousenCount > 0).ToList();
+                BasketForm form = new BasketForm(goods, (Warehouse)TreeView1.Nodes[0]);
+                form.Show();
+            }
+            catch
+            {
+                MessageBox.Show("Не удалось открыть карзину.");
+            }
+        }
     }
 }

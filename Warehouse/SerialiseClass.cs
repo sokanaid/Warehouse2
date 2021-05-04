@@ -20,7 +20,7 @@ namespace Warehouse
         readonly String Name;
         public List<SerialiseClass> Categories= new List<SerialiseClass>();
         public List<Good> Goods = new List<Good>();
-
+        public List<(string CastomerName, Order Order)> Orders ;
         /// <summary>
         /// Сохранение данных.
         /// </summary>
@@ -29,6 +29,7 @@ namespace Warehouse
         {
             Name = warehouse.Text;
             SortCode = warehouse.SortCode;
+            Orders = warehouse.Orders;
             foreach(var i in warehouse.Catigories)
             {
                 Categories.Add(new SerialiseClass(i.Value));
@@ -64,6 +65,7 @@ namespace Warehouse
                 Category category = ReturnCategory(i);
                 warehouse.Catigories[category.Name] = category;
                 warehouse.Nodes.Add(category);
+                warehouse.Orders = Orders;
             }
             return warehouse;
         }

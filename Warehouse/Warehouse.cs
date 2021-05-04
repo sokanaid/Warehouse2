@@ -10,7 +10,7 @@ namespace Warehouse
     /// <summary>
     /// Класс склада.
     /// </summary>
-    class Warehouse:TreeNode, IComparable<Warehouse>, IComparer<TreeNode>
+    public class Warehouse:TreeNode, IComparable<Warehouse>, IComparer<TreeNode>
     {
         public Warehouse():base()
         {
@@ -20,12 +20,12 @@ namespace Warehouse
         {
             SortCode = sortCode;
         }
-
+        public List<(string CastomerName, Order Order)> Orders = new List<(string, Order)>();
         public int SortCode { get; private set; }
         /// <summary>
         /// Список категорий товаров.
         /// </summary>
-        public Dictionary<string, Category> Catigories= new Dictionary<string,Category>();
+        public Dictionary<string , Category> Catigories= new Dictionary<string,Category>();
 
         /// <summary>
         /// Переопределение сравнения по коду сортировки.

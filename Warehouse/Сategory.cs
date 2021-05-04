@@ -8,7 +8,7 @@ namespace Warehouse
     /// <summary>
     /// Класс категории товаров.
     /// </summary>
-    class Category : Warehouse
+    public class Category : Warehouse
     {
         public Category() 
         {
