@@ -12,11 +12,11 @@ namespace Warehouse
     {
         List<Good> Goods;
         Warehouse CurrentWarehouse;
-        string ClientEmail;
-        public BasketForm(List<Good> goods,Warehouse warehouse,string email)
+        Client CurentClient;
+        public BasketForm(List<Good> goods,Warehouse warehouse,Client client)
         {
             InitializeComponent();
-            if (goods is null || warehouse is null || email is null)
+            if (goods is null || warehouse is null || client is null)
             {
                 MessageBox.Show("Не удалось открыть корзину. Возможно склад не был открыт.");
                 Close();
@@ -24,7 +24,7 @@ namespace Warehouse
             }
             Goods = goods;
             CurrentWarehouse = warehouse;
-            ClientEmail = email;
+            CurentClient = client;
             DataGridView1.DataSource = Goods;
             DataGridView1.Columns[0].HeaderText = "Наименование";
             DataGridView1.Columns[1].HeaderText = "Артикул";
@@ -46,7 +46,10 @@ namespace Warehouse
                 }
                 if (Goods is null || Goods.Count == 0) 
                     throw new Exception();
-                CurrentWarehouse.Orders.Add((ClientEmail, new Order(ClientEmail, CurrentWarehouse.Orders.Count+1)));
+                // Добавление заказа в список заказов склада.
+                CurrentWarehouse.Orders.Add((CurentClient.Email, new Order(OrderStatus.Procesing, CurrentWarehouse.Orders.Count+1,
+                    CurentClient,DateTime.Now)));
+                // Уменьшение колличество оставшихся товаров на складе на колличество заказанных.
                 var allGoods = Form1.AllCatigoriesGoods(CurrentWarehouse);
                 for (int i = 0; i < allGoods.Count; i++)
                 {
@@ -55,9 +58,9 @@ namespace Warehouse
                 this.Close();
                 MessageBox.Show($"Заказ оформлен. Заказу присвоен номер: { CurrentWarehouse.Orders.Count}");
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("Не удалось завершить оформление заказа. Возможно корзина пуста.");
+                MessageBox.Show("Не удалось завершить оформление заказа. Возможно корзина пуста."+ex.Message);
             }
         }
     }

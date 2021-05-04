@@ -63,7 +63,7 @@ namespace Warehouse
                     MessageBox.Show("Подкатегория с таким названием уже существует");
                     return;
                 }
-                var newCategory = new Category(name,sortCode);
+                var newCategory = new Category(name, sortCode);
                 category.Catigories[name] = newCategory;
                 TreeView1.BeginUpdate();
                 category.Nodes.Add(newCategory);
@@ -79,7 +79,7 @@ namespace Warehouse
         private void SortNodes(Warehouse category)
         {
             List<TreeNode> nodes = new List<TreeNode>();
-            foreach(TreeNode i in category.Nodes)
+            foreach (TreeNode i in category.Nodes)
             {
                 nodes.Add(i);
             }
@@ -127,7 +127,7 @@ namespace Warehouse
             if (addGoodForm.ShowDialog() != DialogResult.Cancel)
             {
                 Good newGood = new Good(addGoodForm.GoodName, addGoodForm.GoodCode, addGoodForm.Price, addGoodForm.Count);
-                
+
                 category.Goods.Add(newGood);
                 TreeView1_AfterSelect(new object(), new TreeViewEventArgs(category));
             }
@@ -271,7 +271,7 @@ namespace Warehouse
         {
             List<Good> ans = new List<Good>();
 
-            foreach(var i in category.Nodes)
+            foreach (var i in category.Nodes)
             {
                 ans.AddRange(((Category)i).Goods);
                 ans.AddRange(AllCatigoriesGoods((Warehouse)i));
@@ -303,7 +303,7 @@ namespace Warehouse
                 }
 
             }
-            catch 
+            catch
             {
                 MessageBox.Show("Не удалось сохранить склад.");
             }
@@ -389,7 +389,7 @@ namespace Warehouse
             toolStripMenuItemReport.Enabled = ind;
             toolStripMenuItemSaveWarehouse.Enabled = ind;
             toolStripMenuItemRandom.Enabled = ind;
-        
+
         }
 
         /// <summary>
@@ -439,12 +439,12 @@ namespace Warehouse
                 CreateWarehouse createWarehouse = new CreateWarehouse();
                 if (createWarehouse.ShowDialog() == DialogResult.OK)
                 {
-                    Warehouse warehouse = new Warehouse(createWarehouse.CategoryName,createWarehouse.SortCode);
+                    Warehouse warehouse = new Warehouse(createWarehouse.CategoryName, createWarehouse.SortCode);
                     TreeView1.Nodes.Clear();
                     TreeView1.Nodes.Add(warehouse);
                     ActivateWarehouseButtons();
                 }
-                
+
             }
             catch
             {
@@ -470,7 +470,7 @@ namespace Warehouse
                     if (SaveReportFileDialog2.ShowDialog() != DialogResult.Cancel)
                     {
                         string filePath = SaveReportFileDialog2.FileName;
-                        using (StreamWriter fin = new StreamWriter(filePath, false,Encoding.UTF8))
+                        using (StreamWriter fin = new StreamWriter(filePath, false, Encoding.UTF8))
                         {
                             fin.WriteLine("Путь классификатора;Артикул;Наименование;Остаток");
                             foreach (var item in list)
@@ -488,7 +488,7 @@ namespace Warehouse
 
                 }
             }
-            catch 
+            catch
             {
                 MessageBox.Show("Не удалось создать отчет.Возможно файл используется другой программой");
             }
@@ -570,7 +570,7 @@ namespace Warehouse
         {
             MessageBox.Show("1. Для выделения нескольких товаров зажмите CTRL."
                 + Environment.NewLine + "2. При двойном клики на узел дерева открывается контекстное меню"
-                + Environment.NewLine+ "3. Для изменения характеристик товара измените данные в таблице (Артикул не изменяется)");
+                + Environment.NewLine + "3. Для изменения характеристик товара измените данные в таблице (Артикул не изменяется)");
         }
 
         /// <summary>
@@ -581,11 +581,11 @@ namespace Warehouse
             try
             {
                 var getCountForm = new CountForm();
-                if(getCountForm.ShowDialog() == DialogResult.OK)
+                if (getCountForm.ShowDialog() == DialogResult.OK)
                 {
-                    Warehouse warehouse = (Warehouse) TreeView1.SelectedNode;
+                    Warehouse warehouse = (Warehouse)TreeView1.SelectedNode;
                     int count = getCountForm.Count;
-                    for(int i=0; i<count; i++)
+                    for (int i = 0; i < count; i++)
                     {
                         string name = GenerateString();
                         while (warehouse.Catigories.ContainsKey(name))
@@ -614,9 +614,9 @@ namespace Warehouse
         {
             int len = Rnd.Next(1, 10);
             string name = "";
-            for(int i=0; i<len; i++)
+            for (int i = 0; i < len; i++)
             {
-                name += (char)Rnd.Next('a', 'z'+1);
+                name += (char)Rnd.Next('a', 'z' + 1);
             }
             return name;
         }
@@ -639,7 +639,7 @@ namespace Warehouse
                         int Count = Rnd.Next(0, 1000000);
                         double price = Rnd.Next(0, 1000000) + Rnd.NextDouble();
                         category.Goods.Add(new Good(name, code, price, Count));
-                        TreeView1_AfterSelect(sender,new TreeViewEventArgs(TreeView1.SelectedNode));
+                        TreeView1_AfterSelect(sender, new TreeViewEventArgs(TreeView1.SelectedNode));
                     }
                 }
             }
@@ -654,7 +654,7 @@ namespace Warehouse
         /// <returns></returns>
         private string GenerateCode()
         {
-            return Rnd.Next(10, 100) + "-" + Rnd.Next(1000, 10000) + "-" + Rnd.Next(10, 100); 
+            return Rnd.Next(10, 100) + "-" + Rnd.Next(1000, 10000) + "-" + Rnd.Next(10, 100);
         }
 
         /// <summary>
@@ -681,13 +681,51 @@ namespace Warehouse
             try
             {
                 List<Good> goods = AllCatigoriesGoods((Warehouse)TreeView1.Nodes[0]).Where(x => x.ChousenCount > 0).ToList();
-                BasketForm form = new BasketForm(goods, (Warehouse)TreeView1.Nodes[0],MainForm.CurrentClient.Email);
+                BasketForm form = new BasketForm(goods, (Warehouse)TreeView1.Nodes[0], MainForm.CurrentClient);
                 form.Show();
+                this.Enabled = false;
+                form.FormClosed += (object x, FormClosedEventArgs e) => {
+                    this.Enabled = true;
+                };
             }
             catch
             {
                 MessageBox.Show("Не удалось открыть карзину.");
             }
         }
+
+        /// <summary>
+        /// Список заказов.
+        /// </summary>
+        private void toolStripMenuItemMyOrders_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(((Warehouse)TreeView1.Nodes[0]).Orders is null)
+                {
+                    ((Warehouse)TreeView1.Nodes[0]).Orders = new List<(string CastomerName, Order Order)>();
+                }
+                List<Order> orders = new List<Order>();
+                for(int i=0; i< ((Warehouse)TreeView1.Nodes[0]).Orders.Count; i++){
+                    if(((Warehouse)TreeView1.Nodes[0]).Orders[i].CastomerName== MainForm.CurrentClient.Email)
+                    {
+                        orders.Add(((Warehouse)TreeView1.Nodes[0]).Orders[i].Order);
+                    }
+                }
+                var form = new OrdersForm(orders);
+                form.Show();
+                this.Enabled = false;
+                form.FormClosed += (object x, FormClosedEventArgs e) => {
+                    this.Enabled = true;
+                };
+
+            }
+            catch
+            {
+                MessageBox.Show("Не удалось открыть заказы.");
+            }
+        }
+
+
     }
 }
