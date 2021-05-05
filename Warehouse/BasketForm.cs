@@ -48,7 +48,7 @@ namespace Warehouse
                     throw new Exception();
                 // Добавление заказа в список заказов склада.
                 CurrentWarehouse.Orders.Add((CurentClient.Email, new Order(OrderStatus.Procesing, CurrentWarehouse.Orders.Count+1,
-                    CurentClient,DateTime.Now)));
+                    CurentClient,DateTime.Now,Goods)));
                 // Уменьшение колличество оставшихся товаров на складе на колличество заказанных.
                 var allGoods = Form1.AllCatigoriesGoods(CurrentWarehouse);
                 for (int i = 0; i < allGoods.Count; i++)

@@ -363,8 +363,8 @@ namespace Warehouse
             // toolStripMenuItemClients
             // 
             this.toolStripMenuItemClients.Name = "toolStripMenuItemClients";
-            this.toolStripMenuItemClients.Size = new System.Drawing.Size(72, 24);
-            this.toolStripMenuItemClients.Text = "Клиент";
+            this.toolStripMenuItemClients.Size = new System.Drawing.Size(83, 24);
+            this.toolStripMenuItemClients.Text = "Клиенты";
             this.toolStripMenuItemClients.Click += new System.EventHandler(this.toolStripMenuItemClients_Click);
             // 
             // Form1

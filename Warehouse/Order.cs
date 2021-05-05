@@ -13,15 +13,17 @@ namespace Warehouse
         public Client Client;
         public DateTime Time { get; private set; }
         public string CustomerEmail { get; private set; }
-        public Order(OrderStatus status, int code, Client client, DateTime time)
+        public List<Good> Goods;
+        public Order(OrderStatus status, int code, Client client, DateTime time,List<Good> goods)
         {
             Status = status;
             Code = code;
             Client = client;
             Time = time;
             CustomerEmail = Client.Email;
+            Goods = goods;
         }
-        public Order(Order oldorder):this(oldorder.Status,oldorder.Code,oldorder.Client,oldorder.Time)
+        public Order(Order oldorder):this(oldorder.Status,oldorder.Code,oldorder.Client,oldorder.Time,oldorder.Goods)
         {
         }
         /// <summary>
@@ -68,6 +70,19 @@ namespace Warehouse
             {
                 return;
             }
+        }
+
+        /// <summary>
+        ///  Сумма заказа.
+        /// </summary>
+        public double GetSum()
+        {
+            double ans = 0;
+            foreach (var i in Goods)
+            {
+                ans += i.Count * i.Price;
+            }
+            return ans;
         }
     }
 }

@@ -59,6 +59,7 @@ namespace Warehouse
             this.Name = "AllClientsForm";
             this.Text = "Клиенты";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.AllClientsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView1)).EndInit();
             this.ResumeLayout(false);
 
