@@ -62,6 +62,7 @@ namespace Warehouse
             this.DataGridView2 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.toolStripMenuItemClients = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView1)).BeginInit();
             this.ContextMenuStripTreeView.SuspendLayout();
@@ -94,6 +95,7 @@ namespace Warehouse
             this.toolStripMenuItemRandom,
             this.toolStripMenuItemOrder,
             this.toolStripMenuItemBasket,
+            this.toolStripMenuItemClients,
             this.Exit,
             this.ToolHelpButton,
             this.toolStripMenuItemMyOrders});
@@ -358,6 +360,13 @@ namespace Warehouse
             this.label2.TabIndex = 5;
             this.label2.Text = "Товары категории:";
             // 
+            // toolStripMenuItemClients
+            // 
+            this.toolStripMenuItemClients.Name = "toolStripMenuItemClients";
+            this.toolStripMenuItemClients.Size = new System.Drawing.Size(72, 24);
+            this.toolStripMenuItemClients.Text = "Клиент";
+            this.toolStripMenuItemClients.Click += new System.EventHandler(this.toolStripMenuItemClients_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -419,6 +428,7 @@ namespace Warehouse
         public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOrder;
         public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemBasket;
         public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemMyOrders;
+        public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemClients;
     }
 }
 

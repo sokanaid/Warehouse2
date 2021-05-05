@@ -55,7 +55,7 @@ namespace Warehouse
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.DataGridView1);
             this.Name = "AllOrdersForm";
-            this.Text = "AllOrdersForm";
+            this.Text = "Заказы";
             this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView1)).EndInit();
             this.ResumeLayout(false);

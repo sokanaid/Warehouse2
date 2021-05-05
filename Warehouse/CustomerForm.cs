@@ -20,6 +20,7 @@ namespace Warehouse
             toolStripMenuItemWarehouse.Visible = false;
             toolStripMenuItemRandom.Visible = false;
             toolStripMenuItemReport.Visible = false;
+            toolStripMenuItemClients.Visible = false;
             ContextMenuStripTreeView.Enabled = false;
             InitializeComponent();
         }

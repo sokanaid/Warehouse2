@@ -21,6 +21,9 @@ namespace Warehouse
             Time = time;
             CustomerEmail = Client.Email;
         }
+        public Order(Order oldorder):this(oldorder.Status,oldorder.Code,oldorder.Client,oldorder.Time)
+        {
+        }
         /// <summary>
         /// Нажатие на кнопку оплаты.
         /// </summary>

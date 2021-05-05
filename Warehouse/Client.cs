@@ -30,7 +30,7 @@ namespace Warehouse
         /// <summary>
         /// Пароль.
         /// </summary>
-        public string Password { get; private set; }
+        public string Password;// { get; private set; }
 
         public Client (string email,string name, string lastName, string fatherName,string phone,string password)
         {

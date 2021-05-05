@@ -1,7 +1,7 @@
 ﻿
 namespace Warehouse
 {
-    partial class OrdersForm
+    partial class AllClientsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -41,22 +41,23 @@ namespace Warehouse
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.DataGridView1.Location = new System.Drawing.Point(0, 1);
             this.DataGridView1.Name = "DataGridView1";
             this.DataGridView1.ReadOnly = true;
             this.DataGridView1.RowHeadersWidth = 49;
             this.DataGridView1.RowTemplate.Height = 28;
-            this.DataGridView1.Size = new System.Drawing.Size(800, 450);
+            this.DataGridView1.Size = new System.Drawing.Size(799, 447);
             this.DataGridView1.TabIndex = 0;
+            this.DataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellClick);
             // 
-            // OrdersForm
+            // AllClientsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.DataGridView1);
-            this.Name = "OrdersForm";
-            this.Text = "Заказы";
+            this.Name = "AllClientsForm";
+            this.Text = "Клиенты";
             this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -65,6 +66,6 @@ namespace Warehouse
 
         #endregion
 
-        public System.Windows.Forms.DataGridView DataGridView1;
+        private System.Windows.Forms.DataGridView DataGridView1;
     }
 }

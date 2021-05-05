@@ -754,5 +754,41 @@ namespace Warehouse
                 MessageBox.Show("Не удалось открыть заказы.");//+ex.Message);
             }
         }
+
+        /// <summary>
+        /// Открытие списка клиентов.
+        /// </summary>
+        private void toolStripMenuItemClients_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (((Warehouse)TreeView1.Nodes[0]).Orders is null)
+                {
+                    ((Warehouse)TreeView1.Nodes[0]).Orders = new List<(string CastomerName, Order Order)>();
+                }
+                List<Order> orders = new List<Order>();
+                List<Client> clients = new List<Client>();
+                for (int i = 0; i < ((Warehouse)TreeView1.Nodes[0]).Orders.Count; i++)
+                {
+                    orders.Add(((Warehouse)TreeView1.Nodes[0]).Orders[i].Order);
+                    if (!clients.Any(x=>x.Email == ((Warehouse)TreeView1.Nodes[0]).Orders[i].Order.Client.Email))
+                    {
+                        clients.Add(((Warehouse)TreeView1.Nodes[0]).Orders[i].Order.Client);
+                    }
+                    
+                }
+                var form = new AllClientsForm(orders,clients);
+                form.Show();
+                this.Enabled = false;
+                form.FormClosed += (object x, FormClosedEventArgs e) => {
+                    this.Enabled = true;
+                };
+
+            }
+            catch//(Exception ex)
+            {
+                MessageBox.Show("Не удалось открыть список клиентов.");//+ex.Message);
+            }
+        }
     }
 }
