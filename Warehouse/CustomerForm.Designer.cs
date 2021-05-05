@@ -38,6 +38,7 @@ namespace Warehouse
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "CustomerForm";
             this.Text = "CustomerForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CustomerForm_FormClosing);
             this.Controls.SetChildIndex(this.TreeView1, 0);
             this.ResumeLayout(false);
             this.PerformLayout();

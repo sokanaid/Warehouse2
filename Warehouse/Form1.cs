@@ -22,7 +22,7 @@ namespace Warehouse
         /// Стартовая форма.
         /// </summary>
         public StartForm MainForm;
-        public string WarehousePath { get; private set; }
+        //public string WarehousePath { get; private set; }
         public Form1()
         {
             InitializeComponent();
@@ -299,7 +299,7 @@ namespace Warehouse
                         formatter.Serialize(fs, sClass);
 
                     }
-                    WarehousePath = file;
+                    MainForm.WarehousePath = file;
                 }
 
             }
@@ -330,7 +330,7 @@ namespace Warehouse
 
                     }
                     warehouse = sClass.ReturnWarehouse();
-                    WarehousePath = file;
+                    MainForm.WarehousePath = file;
                 }
                 else warehouse = null;
 
@@ -725,7 +725,34 @@ namespace Warehouse
                 MessageBox.Show("Не удалось открыть заказы.");
             }
         }
+        /// <summary>
+        /// Отображение всех заказов.
+        /// </summary>
+        private void toolStripMenuItemOrder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (((Warehouse)TreeView1.Nodes[0]).Orders is null)
+                {
+                    ((Warehouse)TreeView1.Nodes[0]).Orders = new List<(string CastomerName, Order Order)>();
+                }
+                List<Order> orders = new List<Order>();
+                for (int i = 0; i < ((Warehouse)TreeView1.Nodes[0]).Orders.Count; i++)
+                {
+                    orders.Add(((Warehouse)TreeView1.Nodes[0]).Orders[i].Order);
+                }
+                var form = new AllOrdersForm(orders);
+                form.Show();
+                this.Enabled = false;
+                form.FormClosed += (object x, FormClosedEventArgs e) => {
+                    this.Enabled = true;
+                };
 
-
+            }
+            catch//(Exception ex)
+            {
+                MessageBox.Show("Не удалось открыть заказы.");//+ex.Message);
+            }
+        }
     }
 }

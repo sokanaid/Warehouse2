@@ -8,6 +8,7 @@ namespace Warehouse
     /// Статусы заказа.
     /// </summary>
     [Flags]
+    [Serializable]
     public enum OrderStatus
     {
         /// <summary>

@@ -42,8 +42,8 @@ namespace Warehouse
         /// </summary>
         public override void ToolHelpButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("1.Изменение склада возможно только из личного кабинета продавца."+
-                Environment.NewLine+ "2.Для того чтобы положить товар в корзину, измените значение \"В корзине\" для данного товара в верхней таблице");
+            MessageBox.Show("1.Изменение склада возможно только из личного кабинета продавца." +
+                Environment.NewLine + "2.Для того чтобы положить товар в корзину, измените значение \"В корзине\" для данного товара в верхней таблице");
         }
         /// <summary>
         /// Десериализация.
@@ -113,6 +113,29 @@ namespace Warehouse
             catch
             {
                 return;
+            }
+        }
+        /// <summary>
+        /// Сохранение при закрытии склада.
+        /// </summary>
+        private void CustomerForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                string file = MainForm.WarehousePath;
+                SerialiseClass sClass = new SerialiseClass(CurrentWarehouse);
+                BinaryFormatter formatter = new BinaryFormatter();
+                using (FileStream fs = new FileStream(file, FileMode.OpenOrCreate))
+                {
+                    // сериализуем весь массив people
+                    formatter.Serialize(fs, sClass);
+
+                }
+            }
+
+            catch
+            {
+                MessageBox.Show("Не удалось сохранить изменения покупателя.");
             }
         }
     }

@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Warehouse
 {
+    [Serializable]
     public class Client
     {
         /// <summary>

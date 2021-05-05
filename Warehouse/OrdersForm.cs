@@ -20,14 +20,9 @@ namespace Warehouse
             DataGridView1.Columns[0].HeaderText = "Номер";
             DataGridView1.Columns[2].HeaderText = "Дата оформления";
             DataGridView1.Columns[1].HeaderText = "Статус";
+            DataGridView1.Columns[3].Visible = false;
             ((DataGridViewButtonColumn)DataGridView1.Columns[DataGridView1.Columns.Count - 1]).UseColumnTextForButtonValue = true;
             ((DataGridViewButtonColumn)DataGridView1.Columns[DataGridView1.Columns.Count - 1]).Text = "Оплатить";
-            /*for (int i=0; i<orders.Count; i++)
-            {
-                DataGridView1.Rows[i].Cells[DataGridView1.Columns.Count -1].Value = orders[i].PayButton;
-                //((Button)DataGridView1.Rows[i].Cells[DataGridView1.Columns.Count - 1].Value).Text = "1";
-                //DataGridView1.Rows[i].Cells[DataGridView1.Columns.Count - 1].Value = "Оплатить";
-            } */
             DataGridView1.CellClick += DataGridView1_CellClick;
         }
 
@@ -40,7 +35,8 @@ namespace Warehouse
             {
                 if (e.ColumnIndex != 0) return;
                 Orders[e.RowIndex].PayButton_Click();
-                    }
+                DataGridView1.Refresh();
+            }
             catch
             {
                 MessageBox.Show("Не удалось оплатить заказ.");

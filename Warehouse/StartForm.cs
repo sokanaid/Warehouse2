@@ -79,8 +79,10 @@ namespace Warehouse
             {
                 CurrentClient = currentSeller;
                 this.Visible = false;
-                var form = new SellerForm(this.WarehousePath);
-                form.MainForm = this;
+                var form = new SellerForm(this.WarehousePath)
+                {
+                    MainForm = this
+                };
                 form.Show();
 
             }
@@ -100,7 +102,7 @@ namespace Warehouse
             {
                 CurrentClient = currentClient;
                 this.Visible = false;
-                var form = new CustomerForm(WarehousePath);
+                CustomerForm form = new CustomerForm(WarehousePath);
                 form.MainForm = this;
                 form.Show();
 

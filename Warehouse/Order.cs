@@ -10,14 +10,16 @@ namespace Warehouse
     {
         public int Code { get; private set; }
         public OrderStatus Status { get; set; }
-        private Client Client { get; set; }
+        public Client Client;
         public DateTime Time { get; private set; }
+        public string CustomerEmail { get; private set; }
         public Order(OrderStatus status, int code, Client client, DateTime time)
         {
             Status = status;
             Code = code;
             Client = client;
             Time = time;
+            CustomerEmail = Client.Email;
         }
         /// <summary>
         /// Нажатие на кнопку оплаты.
@@ -38,6 +40,26 @@ namespace Warehouse
                 }
                 Status = Status | OrderStatus.Paid;
                 MessageBox.Show("Заказ оплачен.");
+            }
+            catch
+            {
+                return;
+            }
+        }
+        /// <summary>
+        /// Нажатие на кнопку для изменения статуса заказа.
+        /// </summary>
+        public void StatusButton_Click(string statusName,OrderStatus status)
+        {
+            try
+            {
+                if (Status.HasFlag(status))
+                {
+                    MessageBox.Show("Заказ уже "+statusName);
+                    return;
+                }
+                Status = Status | status;
+                MessageBox.Show("Заказ "+statusName);
             }
             catch
             {

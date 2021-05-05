@@ -54,13 +54,14 @@ namespace Warehouse
                 for (int i = 0; i < allGoods.Count; i++)
                 {
                     allGoods[i].Count -= allGoods[i].ChousenCount;
+                    allGoods[i].ChousenCount = 0;
                 }
                 this.Close();
                 MessageBox.Show($"Заказ оформлен. Заказу присвоен номер: { CurrentWarehouse.Orders.Count}");
             }
-            catch(Exception ex)
+            catch//(Exception ex)
             {
-                MessageBox.Show("Не удалось завершить оформление заказа. Возможно корзина пуста."+ex.Message);
+                MessageBox.Show("Не удалось завершить оформление заказа. Возможно корзина пуста.");// +ex.Message);
             }
         }
     }

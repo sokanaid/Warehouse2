@@ -224,6 +224,7 @@ namespace Warehouse
             this.toolStripMenuItemOrder.Name = "toolStripMenuItemOrder";
             this.toolStripMenuItemOrder.Size = new System.Drawing.Size(72, 24);
             this.toolStripMenuItemOrder.Text = "Заказы";
+            this.toolStripMenuItemOrder.Click += new System.EventHandler(this.toolStripMenuItemOrder_Click);
             // 
             // toolStripMenuItemBasket
             // 
@@ -415,9 +416,9 @@ namespace Warehouse
         public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRandomGoods;
         public System.Windows.Forms.ToolStripMenuItem ToolHelpButton;
         public System.Windows.Forms.TreeView TreeView1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOrder;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemBasket;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemMyOrders;
+        public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOrder;
+        public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemBasket;
+        public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemMyOrders;
     }
 }
 
