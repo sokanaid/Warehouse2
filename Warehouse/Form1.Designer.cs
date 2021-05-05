@@ -48,9 +48,11 @@ namespace Warehouse
             this.toolStripMenuItemRandomGoods = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemOrder = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemBasket = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemClients = new System.Windows.Forms.ToolStripMenuItem();
             this.Exit = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolHelpButton = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemMyOrders = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemActiveOrders = new System.Windows.Forms.ToolStripMenuItem();
             this.DataGridView1 = new System.Windows.Forms.DataGridView();
             this.ContextMenuStripTreeView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemAddCategory = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,7 +64,6 @@ namespace Warehouse
             this.DataGridView2 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.toolStripMenuItemClients = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView1)).BeginInit();
             this.ContextMenuStripTreeView.SuspendLayout();
@@ -94,14 +95,15 @@ namespace Warehouse
             this.toolStripMenuItemReport,
             this.toolStripMenuItemRandom,
             this.toolStripMenuItemOrder,
+            this.toolStripMenuItemActiveOrders,
             this.toolStripMenuItemBasket,
+            this.toolStripMenuItemMyOrders,
             this.toolStripMenuItemClients,
             this.Exit,
-            this.ToolHelpButton,
-            this.toolStripMenuItemMyOrders});
+            this.ToolHelpButton});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1059, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -235,6 +237,13 @@ namespace Warehouse
             this.toolStripMenuItemBasket.Text = "Корзина";
             this.toolStripMenuItemBasket.Click += new System.EventHandler(this.ToolStripMenuItemBasket_Click);
             // 
+            // toolStripMenuItemClients
+            // 
+            this.toolStripMenuItemClients.Name = "toolStripMenuItemClients";
+            this.toolStripMenuItemClients.Size = new System.Drawing.Size(83, 24);
+            this.toolStripMenuItemClients.Text = "Клиенты";
+            this.toolStripMenuItemClients.Click += new System.EventHandler(this.toolStripMenuItemClients_Click);
+            // 
             // Exit
             // 
             this.Exit.Name = "Exit";
@@ -256,6 +265,13 @@ namespace Warehouse
             this.toolStripMenuItemMyOrders.Text = "Мои заказы";
             this.toolStripMenuItemMyOrders.Click += new System.EventHandler(this.toolStripMenuItemMyOrders_Click);
             // 
+            // toolStripMenuItemActiveOrders
+            // 
+            this.toolStripMenuItemActiveOrders.Name = "toolStripMenuItemActiveOrders";
+            this.toolStripMenuItemActiveOrders.Size = new System.Drawing.Size(143, 24);
+            this.toolStripMenuItemActiveOrders.Text = "Активные заказы";
+            this.toolStripMenuItemActiveOrders.Click += new System.EventHandler(this.toolStripMenuItemActiveOrders_Click);
+            // 
             // DataGridView1
             // 
             this.DataGridView1.AllowUserToAddRows = false;
@@ -269,7 +285,7 @@ namespace Warehouse
             this.DataGridView1.Name = "DataGridView1";
             this.DataGridView1.RowHeadersWidth = 49;
             this.DataGridView1.RowTemplate.Height = 28;
-            this.DataGridView1.Size = new System.Drawing.Size(503, 187);
+            this.DataGridView1.Size = new System.Drawing.Size(762, 187);
             this.DataGridView1.TabIndex = 2;
             this.DataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.DataGridView1_DataError);
             this.DataGridView1.SelectionChanged += new System.EventHandler(this.DataGridView1_SelectionChanged);
@@ -334,7 +350,7 @@ namespace Warehouse
             this.DataGridView2.ReadOnly = true;
             this.DataGridView2.RowHeadersWidth = 49;
             this.DataGridView2.RowTemplate.Height = 28;
-            this.DataGridView2.Size = new System.Drawing.Size(503, 185);
+            this.DataGridView2.Size = new System.Drawing.Size(762, 185);
             this.DataGridView2.TabIndex = 3;
             // 
             // label1
@@ -360,19 +376,12 @@ namespace Warehouse
             this.label2.TabIndex = 5;
             this.label2.Text = "Товары категории:";
             // 
-            // toolStripMenuItemClients
-            // 
-            this.toolStripMenuItemClients.Name = "toolStripMenuItemClients";
-            this.toolStripMenuItemClients.Size = new System.Drawing.Size(83, 24);
-            this.toolStripMenuItemClients.Text = "Клиенты";
-            this.toolStripMenuItemClients.Click += new System.EventHandler(this.toolStripMenuItemClients_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightCyan;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1059, 450);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.DataGridView2);
@@ -429,6 +438,7 @@ namespace Warehouse
         public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemBasket;
         public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemMyOrders;
         public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemClients;
+        public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemActiveOrders;
     }
 }
 

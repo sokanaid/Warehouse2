@@ -22,6 +22,7 @@ namespace Warehouse
             toolStripMenuItemReport.Visible = false;
             toolStripMenuItemClients.Visible = false;
             ContextMenuStripTreeView.Enabled = false;
+            toolStripMenuItemActiveOrders.Visible = false;
             InitializeComponent();
         }
         public CustomerForm(string Warehousepath) : this()

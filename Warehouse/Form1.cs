@@ -570,7 +570,8 @@ namespace Warehouse
         {
             MessageBox.Show("1. Для выделения нескольких товаров зажмите CTRL."
                 + Environment.NewLine + "2. При двойном клики на узел дерева открывается контекстное меню"
-                + Environment.NewLine + "3. Для изменения характеристик товара измените данные в таблице (Артикул не изменяется)");
+                + Environment.NewLine + "3. Для изменения характеристик товара измените данные в таблице (Артикул не изменяется)"
+                +Environment.NewLine+"4.Список заказов и клиентов привязан к складу. Покупатель не может менять склад и товары.);
         }
 
         /// <summary>
@@ -684,7 +685,8 @@ namespace Warehouse
                 BasketForm form = new BasketForm(goods, (Warehouse)TreeView1.Nodes[0], MainForm.CurrentClient);
                 form.Show();
                 this.Enabled = false;
-                form.FormClosed += (object x, FormClosedEventArgs e) => {
+                form.FormClosed += (object x, FormClosedEventArgs e) =>
+                {
                     this.Enabled = true;
                 };
             }
@@ -701,13 +703,14 @@ namespace Warehouse
         {
             try
             {
-                if(((Warehouse)TreeView1.Nodes[0]).Orders is null)
+                if (((Warehouse)TreeView1.Nodes[0]).Orders is null)
                 {
                     ((Warehouse)TreeView1.Nodes[0]).Orders = new List<(string CastomerName, Order Order)>();
                 }
                 List<Order> orders = new List<Order>();
-                for(int i=0; i< ((Warehouse)TreeView1.Nodes[0]).Orders.Count; i++){
-                    if(((Warehouse)TreeView1.Nodes[0]).Orders[i].CastomerName== MainForm.CurrentClient.Email)
+                for (int i = 0; i < ((Warehouse)TreeView1.Nodes[0]).Orders.Count; i++)
+                {
+                    if (((Warehouse)TreeView1.Nodes[0]).Orders[i].CastomerName == MainForm.CurrentClient.Email)
                     {
                         orders.Add(((Warehouse)TreeView1.Nodes[0]).Orders[i].Order);
                     }
@@ -715,7 +718,8 @@ namespace Warehouse
                 var form = new OrdersForm(orders);
                 form.Show();
                 this.Enabled = false;
-                form.FormClosed += (object x, FormClosedEventArgs e) => {
+                form.FormClosed += (object x, FormClosedEventArgs e) =>
+                {
                     this.Enabled = true;
                 };
 
@@ -744,7 +748,8 @@ namespace Warehouse
                 var form = new AllOrdersForm(orders);
                 form.Show();
                 this.Enabled = false;
-                form.FormClosed += (object x, FormClosedEventArgs e) => {
+                form.FormClosed += (object x, FormClosedEventArgs e) =>
+                {
                     this.Enabled = true;
                 };
 
@@ -771,16 +776,17 @@ namespace Warehouse
                 for (int i = 0; i < ((Warehouse)TreeView1.Nodes[0]).Orders.Count; i++)
                 {
                     orders.Add(((Warehouse)TreeView1.Nodes[0]).Orders[i].Order);
-                    if (!clients.Any(x=>x.Email == ((Warehouse)TreeView1.Nodes[0]).Orders[i].Order.Client.Email))
+                    if (!clients.Any(x => x.Email == ((Warehouse)TreeView1.Nodes[0]).Orders[i].Order.Client.Email))
                     {
                         clients.Add(((Warehouse)TreeView1.Nodes[0]).Orders[i].Order.Client);
                     }
-                    
+
                 }
-                var form = new AllClientsForm(orders,clients);
+                var form = new AllClientsForm(orders, clients);
                 form.Show();
                 this.Enabled = false;
-                form.FormClosed += (object x, FormClosedEventArgs e) => {
+                form.FormClosed += (object x, FormClosedEventArgs e) =>
+                {
                     this.Enabled = true;
                 };
 
@@ -790,5 +796,40 @@ namespace Warehouse
                 MessageBox.Show("Не удалось открыть список клиентов.");//+ex.Message);
             }
         }
+
+        /// <summary>
+        /// Отображение активных заказов.
+        /// </summary>
+        private void toolStripMenuItemActiveOrders_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (((Warehouse)TreeView1.Nodes[0]).Orders is null)
+                {
+                    ((Warehouse)TreeView1.Nodes[0]).Orders = new List<(string CastomerName, Order Order)>();
+                }
+                List<Order> orders = new List<Order>();
+                for (int i = 0; i < ((Warehouse)TreeView1.Nodes[0]).Orders.Count; i++)
+                {
+                    if (!((Warehouse)TreeView1.Nodes[0]).Orders[i].Order.Status.HasFlag(OrderStatus.Executed))
+                    {
+                        orders.Add(((Warehouse)TreeView1.Nodes[0]).Orders[i].Order);
+                    }
+                }
+                var form = new AllOrdersForm(orders);
+                form.Show();
+                this.Enabled = false;
+                form.FormClosed += (object x, FormClosedEventArgs e) =>
+                {
+                    this.Enabled = true;
+                };
+
+            }
+            catch//(Exception ex)
+            {
+                MessageBox.Show("Не удалось открыть заказы.");//+ex.Message);
+            }
+        }
+
     }
 }
