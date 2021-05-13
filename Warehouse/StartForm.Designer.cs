@@ -129,6 +129,7 @@ namespace Warehouse
             this.Controls.Add(this.RadioButCustAvt);
             this.Name = "StartForm";
             this.Text = "Вход";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StartForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Windows.Forms;
 
@@ -14,11 +15,11 @@ namespace Warehouse
         /// <summary>
         /// Список зарегистрированных покупателей.
         /// </summary>
-        public List<Client> Clients = new List<Client>() { new Client("1", "1", "1", "1", "1", "1") };
+        public List<Client> Clients = new List<Client>();//{ new Client("1", "1", "1", "1", "1", "1") };
         /// <summary>
         /// Список зарегистрированных продавцы.
         /// </summary>
-        public List<Client> Sellers = new List<Client>() { new Client("1", "1", "1", "1", "1", "1") };
+        public List<Client> Sellers = new List<Client>();// { new Client("1", "1", "1", "1", "1", "1") };
         /// <summary>
         /// Путь к текущему складу.
         /// </summary>
@@ -30,8 +31,51 @@ namespace Warehouse
         public StartForm()
         {
             InitializeComponent();
+            try
+            {
+                Sellers = Deserialise(Path.Combine("warehouses", "Sellers.bin"));
+            }
+            catch
+            {
+                MessageBox.Show("Не удалось востановить список продавцов");
+                Sellers = new List<Client>();
+            }
+            try
+            {
+                Clients = Deserialise(Path.Combine("warehouses", "Clients.bin"));
+            }
+            catch
+            {
+                MessageBox.Show("Не удалось востановить список покупателей");
+                Clients = new List<Client>();
+            }
         }
 
+        /// <summary>
+        /// Десeриализация пользователей.
+        /// </summary>
+        /// <param name="file">имя файла.</param>
+        /// <returns>Список пользователей.</returns>
+        private List<Client> Deserialise(string file)
+        {
+            var ser = new BinaryFormatter();
+            using (var input = new FileStream(file,FileMode.OpenOrCreate)) {
+                return (List<Client>)ser.Deserialize(input);
+            }
+        }
+        /// <summary>
+        /// Сериализация пользователей.
+        /// </summary>
+        /// <param name="file">Имя файла.</param>
+        /// <param name="clients">Список клиентов.</param>
+        private void Serialise(string file, List<Client> clients)
+        {
+            var ser = new BinaryFormatter();
+            using (var input = new FileStream(file, FileMode.OpenOrCreate))
+            {
+                ser.Serialize(input,clients);
+            }
+        }
         /// <summary>
         /// Вход в программу.
         /// </summary>
@@ -147,6 +191,29 @@ namespace Warehouse
             catch
             {
                 MessageBox.Show("Не удалось зарегистровать нового клиента");
+            }
+        }
+
+        /// <summary>
+        /// Сохранение списка пользователей.
+        /// </summary>
+        private void StartForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                Serialise(Path.Combine("warehouses","Sellers.bin"), Sellers );
+            }
+            catch
+            {
+                MessageBox.Show("Не удалось сохранить список продавцов");
+            }
+            try
+            {
+                Serialise(Path.Combine("warehouses", "Clients.bin"), Clients);
+            }
+            catch
+            {
+                MessageBox.Show("Не удалось сохранить список покупателей");
             }
         }
     }
