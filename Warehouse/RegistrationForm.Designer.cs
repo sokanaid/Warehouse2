@@ -166,6 +166,7 @@ namespace Warehouse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.MediumTurquoise;
             this.ClientSize = new System.Drawing.Size(800, 417);
             this.Controls.Add(this.FatherNameText);
             this.Controls.Add(this.LastNameText);
