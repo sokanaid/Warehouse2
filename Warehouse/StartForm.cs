@@ -86,7 +86,7 @@ namespace Warehouse
                 try
                 {
 
-                    Client currentClient = Clients.Find(x => x.Email == Login.Text && x.Password == Password.Text);
+                    Client currentClient = Clients.Find(x => x.Email == Login.Text && (x.Password == Client.GetHashPassword( Password.Text,x.Name)));
                     if (currentClient is null) throw new Exception();
                     // Начало работы с программой в качестве покупателя.
                     StartWorkWithCostumer(currentClient);
@@ -100,8 +100,8 @@ namespace Warehouse
             {
                 try
                 {
-
-                    Client currentSeller = Sellers.Find(x => x.Email == Login.Text && x.Password == Password.Text);
+                    var bytes = Client.GetHashPassword(Password.Text, Sellers[0].Name);
+                    Client currentSeller = Sellers.Find(x => x.Email == Login.Text && x.Password == Client.GetHashPassword(Password.Text, x.Name));
                     if (currentSeller is null) throw new Exception();
                     // Начало работы с программой в качестве продавца.
                     StartWorkWithSeller(currentSeller);
@@ -171,7 +171,7 @@ namespace Warehouse
                     if (dialog.ShowDialog() != DialogResult.Cancel)
                     {
                         client = new Client(dialog.Email, dialog.ClientName, dialog.LastName, dialog.FatherName,
-                            dialog.Phone, dialog.Password);
+                            dialog.Phone, Client.GetHashPassword(dialog.Password, dialog.ClientName));
                         Clients.Add(client);
                         StartWorkWithCostumer(client);
                     }
@@ -182,7 +182,7 @@ namespace Warehouse
                     if (dialog.ShowDialog() != DialogResult.Cancel)
                     {
                         client = new Client(dialog.Email, dialog.ClientName, dialog.LastName, dialog.FatherName,
-                            dialog.Phone, dialog.Password);
+                            dialog.Phone, Client.GetHashPassword(dialog.Password,dialog.ClientName));
                         Sellers.Add(client);
                         StartWorkWithSeller(client);
                     }

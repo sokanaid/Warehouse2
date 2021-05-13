@@ -18,14 +18,15 @@ namespace Warehouse
             InitializeComponent();
             try
             {
-                
+                toolStripMenuItemBasket.Visible = false;
+                toolStripMenuItemMyOrders.Visible = false;
                 TreeView1.Nodes.Clear();
                 DeserializeWarehouse(out CurrentWarehouse, warehousePath);
                 if (CurrentWarehouse is null) throw new Exception();
                 TreeView1.Nodes.Add(CurrentWarehouse);
                 ActivateWarehouseButtons();
-                toolStripMenuItemBasket.Visible = false;
-                toolStripMenuItemMyOrders.Visible = false;
+               
+               
             }
             catch
             {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Warehouse
@@ -30,9 +31,9 @@ namespace Warehouse
         /// <summary>
         /// Пароль.
         /// </summary>
-        public string Password;// { get; private set; }
+        public int Password;// { get; private set; }
 
-        public Client (string email,string name, string lastName, string fatherName,string phone,string password)
+        public Client (string email,string name, string lastName, string fatherName,string phone,int password)
         {
             Email = email;
             Name = name;
@@ -40,6 +41,20 @@ namespace Warehouse
             FatherName = fatherName;
             Phone = phone;
             Password = password;
+        }
+        public static int GetHashPassword(string password,string name)
+        {
+            var coder = SHA256.Create();
+            var str = password + name;
+            byte[] bytes=new byte[str.Length];
+            for(var i=0;i< str.Length;i++)
+            {
+                bytes[i] = (byte)str[i];
+            }
+
+            return BitConverter.ToInt32( coder.ComputeHash(bytes));
+            
+            //return coder.ComputeHash(Encoding.Default.GetBytes(str));
         }
     }
 }
