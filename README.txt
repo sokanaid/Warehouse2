@@ -1,4 +1,1 @@
-Полностью реализован основной функциоал и 1 пункт из дополнительного функционала.
-НЕ ПРОВЕРЯЙТЕ ЧЕРЕЗ ОТЛАДКУ. В противном случае изменения могут не сохраниться.
-Все продавцы имеют одинаковый доступ к складам.
-Заказы покупателей видны продавцу только если они были сделаны на том складе который открыт сейчас.
+This is a Windows forms application that emits warehouse work. There are 2 interfaces. The first one for the warehouse owner allows you to create a warehouse, add goods to it, track orders and change their status. The second one for buyers - allows you to add products to the cart, create orders, track their status. After working with the application, the data is serialized. The application also contains the ability to export data to a CSV file.
